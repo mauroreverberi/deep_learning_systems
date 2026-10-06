@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project data and local editor files
+.idea/
+.DS_Store
+.claude/
+data/
+*.partial
