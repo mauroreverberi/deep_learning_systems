@@ -223,3 +223,5 @@ __marimo__/
 .claude/
 data/
 *.partial
+# the prepared dataset is part of the repository, although a global rule may ignore *.csv
+!phrasebank.csv
