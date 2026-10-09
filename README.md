@@ -30,6 +30,11 @@ negative items.
 - A data preparation script (`prepare_dataset.py`) that turns the original
   archive into one CSV file with the agreement level, the template groups and
   the three splits.
+- A written report (`Deep_Learning_Systems_Analysis_Report.pdf`) that
+  explains the task, dataset, model, experiment, results, limitations and
+  ethical risks for technical and non-technical readers. The project
+  overview calls it `module_summary.pdf`, I use the file name from the
+  submission instructions.
 - A reproducibility file (`requirements.txt`), generated with `pip freeze`
   inside the project's own virtual environment.
 
@@ -44,13 +49,14 @@ The archive `FinancialPhraseBank-v1.0.zip` (0.7 MB) holds the same sentences
 at four levels of annotator agreement. It is not included, `prepare_dataset.py`
 downloads it from a fixed revision and checks its SHA-256. The script removes
 contradictory and repeated sentences, adds the agreement level and puts
-sentences of the same template with other amounts or years into one group. It
-splits the groups about 70/15/15 into train, validation and test, stratified
-by label and agreement level with seed 42. Templates with larger changes can
-still land in two splits. I downloaded the archive on 2026-10-01. The result
-`phrasebank.csv` (0.7 MB) is included, one row per sentence with the columns
-`sentence`, `label`, `agreement`, `group` and `split`, with the original
-labels and under the same license, CC BY-NC-SA 3.0.
+sentences of the same template with other amounts or years into one group,
+which gives 123 groups with more than one sentence. It splits the groups about
+70/15/15 into train, validation and test, stratified by the label and
+agreement level of the first sentence of each group, with seed 42. Templates
+with larger changes can still land in two splits. I downloaded the archive on
+2026-10-01. The result `phrasebank.csv` (0.7 MB) is included, one row per
+sentence with the columns `sentence`, `label`, `agreement`, `group` and
+`split`, with the original labels and under the same license, CC BY-NC-SA 3.0.
 
 The notebook reads `phrasebank.csv` directly, so no download is needed to run
 it. To rebuild the file from the original archive:
@@ -77,8 +83,8 @@ macro-F1. On the 722 test sentences the baseline reaches a mean macro-F1 of
 0.8176 (standard deviation 0.0043) and a negative recall of 0.8483. The
 weighted loss raises the negative recall to 0.8644 and the macro-F1 to 0.8191
 (0.0023), but lowers the negative precision from 0.7386 to 0.7294. The recall
-is higher in only three of five seeds, and all changes are smaller than the
-differences between the seeds (paired t-tests p = 0.605 for macro-F1,
+is higher in only three of five seeds, and the mean changes are smaller than
+the variation between the seeds (paired t-tests p = 0.605 for macro-F1,
 p = 0.385 for the negative recall). So the weighted loss shifts the model a
 little towards the negative class without making it clearly better or worse.
 The TF-IDF reference reaches macro-F1 0.6483, or 0.6928 with balanced class
@@ -109,8 +115,8 @@ positive.
 
 On the first run the notebook downloads DistilBERT and its tokenizer from a
 fixed revision on the Hugging Face hub (about 270 MB) and caches them. A full
-run with ten models takes about one hour on the CPU of my Mac, a GPU is used
-if there is one. The reported run used fixed seeds and deterministic
+run with ten models takes about one hour on the CPU of my Mac, CUDA is used
+if it is available. The reported run used fixed seeds and deterministic
 algorithms on the CPU, so results may differ slightly on other hardware.
 
 ## Dependencies
