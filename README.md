@@ -25,8 +25,8 @@ negative items.
   checks including a near-duplicate check across the splits, tokenization, a
   TF-IDF reference model, the DistilBERT baseline with my own PyTorch
   classification head, the experiment with the class-weighted loss over five
-  seeds, the evaluation with a paired t-test, results per agreement level,
-  error examples and a short summary.
+  seeds, the evaluation with a paired t-test and a sign test, results per
+  agreement level, error examples and a short summary.
 - A data preparation script (`prepare_dataset.py`) that turns the original
   archive into one CSV file with the agreement level, the template groups and
   the three splits.
@@ -115,8 +115,9 @@ positive.
 
 On the first run the notebook downloads DistilBERT and its tokenizer from a
 fixed revision on the Hugging Face hub (about 270 MB) and caches them. A full
-run with ten models takes about one hour on the CPU of my Mac, CUDA is used
-if it is available. The reported run used fixed seeds and deterministic
+run with ten models takes one to one and a half hours on the CPU of my Mac,
+depending on what else runs on the machine, and CUDA is used if it is
+available. The reported run used fixed seeds and deterministic
 algorithms on the CPU, so results may differ slightly on other hardware.
 
 ## Dependencies
