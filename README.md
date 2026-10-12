@@ -115,9 +115,8 @@ positive.
 
 On the first run the notebook downloads DistilBERT and its tokenizer from a
 fixed revision on the Hugging Face hub (about 270 MB) and caches them. A full
-run with ten models takes one to one and a half hours on the CPU of my Mac,
-depending on what else runs on the machine, and CUDA is used if it is
-available. The reported run used fixed seeds and deterministic
+run with ten models takes about one hour on the CPU of my Mac, CUDA is used
+if it is available. The reported run used fixed seeds and deterministic
 algorithms on the CPU, so results may differ slightly on other hardware.
 
 ## Dependencies
