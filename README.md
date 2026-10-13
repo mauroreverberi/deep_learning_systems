@@ -64,7 +64,7 @@ it. To rebuild the file from the original archive:
 python prepare_dataset.py --download
 ```
 
-This is the output of the script. The SHA-256 in the last line is the same
+This is the output of the script after the download line. The SHA-256 in the last line is the same
 as the one of the file in this repository, which you can check with
 `shasum -a 256 phrasebank.csv` (on Windows `certutil -hashfile phrasebank.csv SHA256`).
 ```
